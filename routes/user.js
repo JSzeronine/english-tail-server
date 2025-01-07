@@ -36,13 +36,20 @@ router.post("/signup", async (req, res) => {
             res.status(401).json({
                 message: "이메일 및 아이디가 존재 합니다."
             });
+
+            return;
         }
 
         const [result] = await conn.query(`
             INSERT INTO wt_users ( password, email, name ) values (?,?,?)
         `, [hashedPassword, email, username]);
 
+        await conn.query(`
+            INSERT INTO wt_score (user_id, score) value ( ?, 1000 )
+        `, [result.insertId]);
+
         res.status(200).json(result);
+
     } catch (err) {
         console.error(err);
     }
