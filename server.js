@@ -21,8 +21,10 @@ app.use(cors({
 app.options("*", cors());
 
 const quiz = require("./routes/quiz");
+const user = require("./routes/user");
 
 app.use("/quiz", quiz);
+app.use("/user", user);
 
 app.get("/", (req, res) => {
     res.status(200).json({
