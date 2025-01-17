@@ -15,7 +15,7 @@ app.use(express.urlencoded({
 }));
 app.use(cookieParser());
 app.use(cors({
-    origin: process.env.CORS_HOST,
+    origin: "*",
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
     allowedHeaders: ['Content-Type'],
     credentials: true,
@@ -26,8 +26,6 @@ app.use('/swagger-api', swaggerUi.serve, swaggerUi.setup(swaggerFile));
 
 const quiz = require("./routes/quiz");
 const user = require("./routes/user");
-const {query} = require("express");
-
 
 app.use("/quiz", quiz);
 app.use("/user", user);
