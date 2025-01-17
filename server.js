@@ -28,6 +28,7 @@ const quiz = require("./routes/quiz");
 const user = require("./routes/user");
 const {query} = require("express");
 
+
 app.use("/quiz", quiz);
 app.use("/user", user);
 
