@@ -50,7 +50,7 @@ router.get( "/my-ranking", async ( req, res) => {
 
 router.post("/finish", async (req, res) => {
     const conn = await db.getConnection();
-    const {score, userId} = req.body.params;
+    const {score, userId} = req.body;
 
     const [scoreData] = await conn.query(`
         SELECT * from wt_score
